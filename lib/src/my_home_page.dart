@@ -9,6 +9,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _valorGasolina = ValueNotifier<String>('0');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,14 +22,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Flexible(
               child: Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(10),
                   width: double.infinity,
                   color: Colors.white,
                   child: Column(
                     children: const [
                       Text("Distancia percorrida:"),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       TextField(
                           keyboardType: TextInputType.number,
@@ -44,12 +46,34 @@ class _MyHomePageState extends State<MyHomePage> {
             Flexible(
               flex: 1,
               child: Container(
-                color: Colors.pink,
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Text("Preço da gasolina"),
+                    ValueListenableBuilder(
+                      builder: (BuildContext _, value, __) {
+                        return Slider(
+                            label: _valorGasolina.value,
+                            max: 10,
+                            value: double.parse(_valorGasolina.value),
+                            onChanged: (double value) {
+                              _valorGasolina.value = value.toString();
+                            });
+                      },
+                      valueListenable: _valorGasolina,
+                    )
+                  ],
+                ),
               ),
             ),
             Flexible(
               child: Container(
                 color: Colors.yellow,
+              ),
+            ),
+            Flexible(
+              child: Container(
+                color: Colors.black,
               ),
             )
           ],
