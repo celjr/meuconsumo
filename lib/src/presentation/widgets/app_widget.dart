@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'my_home_page.dart';
+import '../pages/my_home_page.dart';
 
-class MyApp extends StatelessWidget {
+class AppWidget extends StatelessWidget {
   final String title;
-  const MyApp({Key? key, required this.title}) : super(key: key);
+  const AppWidget({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: title,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.yellow,
       ),
       home: MyHomePage(title: title),
     );
