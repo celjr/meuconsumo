@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:meuconsumo/src/presentation/components/distance_component.dart';
 
 import '../controllers/page_controller.dart';
@@ -14,11 +15,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var gastoController;
+  late var appReview;
 
   @override
   void initState() {
     super.initState();
     gastoController = GastoController();
+    
   }
 
   calculoGastoMedio(
@@ -28,11 +31,50 @@ class _MyHomePageState extends State<MyHomePage> {
     gastoController.gastoMedio.value = result.toString();
   }
 
+  showReviewModal() {
+    return showDialog(
+        context: context,
+        builder: ((context) {
+          return Container(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [Text('Avalie o App')],
+          ));
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
+    appReview = InAppReview.instance;
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              child: Text(
+                'Meu Consumo',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.yellow,
+              ),
+            ),
+            ListTile(
+              onTap: () async {
+                
+                appReview.requestReview();
+        
+              },
+              title: const Text('Avalie o App'),
+            )
+          ],
+        ),
+      ),
       body: Container(
         height: screenSize.height,
         padding: const EdgeInsets.all(10),
