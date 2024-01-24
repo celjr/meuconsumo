@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: screenSize.height / 5,
               child: Column(
                 children: [
-                  const Text("Preço da gasolina:"),
+                  const Text("Preço do combustivel:"),
                   const SizedBox(height: 5),
                   ValueListenableBuilder(
                     valueListenable: gastoController.valorGasolina,

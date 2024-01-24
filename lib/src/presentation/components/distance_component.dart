@@ -28,7 +28,11 @@ class DistanceComponent extends StatelessWidget {
                   FilteringTextInputFormatter.allow(RegExp(r'^([\d.]+)?$')),
                 ],
                 onChanged: (value) {
-                  gastoController.distPercorrida = value;
+                    if (value.isEmpty) {
+                    gastoController.distPercorrida = '0';
+                  } else {
+                    gastoController.distPercorrida = value;
+                  }
 
                   gastoController.calculoGastoMedio();
                 },
