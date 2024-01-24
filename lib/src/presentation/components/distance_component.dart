@@ -12,7 +12,6 @@ class DistanceComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController controllerTextField = TextEditingController();
     return Container(
         padding: const EdgeInsets.all(10),
         width: screenSize.width,
@@ -29,11 +28,10 @@ class DistanceComponent extends StatelessWidget {
                   FilteringTextInputFormatter.allow(RegExp(r'^([\d.]+)?$')),
                 ],
                 onChanged: (value) {
-                  gastoController.distPercorrida = controllerTextField.text;
-                  print(controllerTextField.text);
+                  gastoController.distPercorrida = value;
+
                   gastoController.calculoGastoMedio();
                 },
-                controller: controllerTextField,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     suffixText: 'Km',

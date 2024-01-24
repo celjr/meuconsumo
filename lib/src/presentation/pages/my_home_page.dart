@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:meuconsumo/src/core/utils/banner_ad.dart';
 import 'package:meuconsumo/src/presentation/components/distance_component.dart';
 
 import '../controllers/page_controller.dart';
@@ -21,7 +22,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     gastoController = GastoController();
-    
   }
 
   calculoGastoMedio(
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             const DrawerHeader(
               child: Text(
-                'Meu Consumo',
+                'Meu Gasto',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -66,9 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               onTap: () async {
-                
                 appReview.requestReview();
-        
               },
               title: const Text('Avalie o App'),
             )
@@ -170,6 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 )),
+            Align(alignment: Alignment.bottomCenter, child: BannerAdWidget()),
           ]),
         ),
       ),
